@@ -3,15 +3,26 @@ layout: default
 title: "Home"
 ---
 
-{% if site.show_excerpts %}
-  {% for post in site.posts %}
-    <article>
-      {% include meta.html post=post %}
-      {{ post.excerpt }}
-      <footer class="button"><a href="{{ post.url | relative_url }}">read more</a></footer>
-    </article>
-  {% endfor %}
-{% else %}
-  {% capture source %}{% include_relative archive.html title="Posts" %}{% endcapture %}
-  {{ source | split: "---" | last }}
+{% assign now_year = site.time | date: "%Y" | plus: 0 %}
+{% assign now_month = site.time | date: "%m" | plus: 0 %}
+{% assign now_day = site.time | date: "%d" | plus: 0 %}
+{% assign age = now_year | minus: 2003 %}
+{% if now_month < 5 %}
+  {% assign age = age | minus: 1 %}
+{% elsif now_month == 5 %}
+  {% if now_day < 4 %}
+    {% assign age = age | minus: 1 %}
+  {% endif %}
 {% endif %}
+
+<div>
+<p>Hey, I'm Yash Mundada.</p>
+<ul>
+  <li>{{ age }} years old</li>
+  <li>Studied Computer Science at BITS Pilani</li>
+  <li>Previously a Software Engineer at Meta, Amazon, and HubSpot</li>
+  <li>Now cofounder at <a href="https://www.riseglobaleducation.com">RISE</a></li>
+  <li>Enjoy building personal projects and learning new things</li>
+  <li>Write a blog with friends at <a href="https://www.signalsandstories.com">signalsandstories.com</a></li>
+</ul>
+</div>
