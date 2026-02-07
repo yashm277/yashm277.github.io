@@ -22,7 +22,6 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
   - {file: "README.md", title: "About Me"}
   - {file: "personalprojects.html", title: "Personal Projects"}
   - {file: "README.md", title: "Blog", url: "https://www.signalsandstories.com/"}
-  - {file: "README.md", title: "Travel", url: "https://travel.com"}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: Mail, icon: envelope, url: "mailto:yash.mundada@gmail.com"}
