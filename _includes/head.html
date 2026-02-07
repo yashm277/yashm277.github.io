@@ -29,4 +29,5 @@
 {%- if site.comments.isso_domain and page.layout == "post" -%}
 <script data-isso="http://{{ site.comments.isso_domain }}" src="//{{ site.comments.isso_domain }}/js/embed.min.js"></script>
 {%- endif -%}
+<script src="{{ "/assets/js/toggle-color.js" | relative_url }}"></script>
 {%- if site.show_sidebar %}{% include sidebar.html %}{% endif %}

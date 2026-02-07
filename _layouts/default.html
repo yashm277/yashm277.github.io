@@ -9,7 +9,75 @@
   {% endunless %}
   {% include menu.html menu=site.navigation %}
   {% include menu.html menu=site.external %}
+  <label class="theme-toggle" for="theme-switch">
+    <input type="checkbox" id="theme-switch" onclick="toggle()">
+    <span class="toggle-slider">
+      <span class="toggle-icon">☀️</span>
+    </span>
+  </label>
 </header>
+
+<style>
+.theme-toggle {
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.toggle-slider {
+  display: block;
+  width: 48px;
+  height: 26px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+  transition: background 0.3s;
+}
+
+.toggle-slider .toggle-icon {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: transform 0.3s, background 0.3s;
+  line-height: 1;
+}
+
+.theme-toggle input:checked + .toggle-slider {
+  background: rgba(30, 80, 120, 0.6);
+}
+
+.theme-toggle input:checked + .toggle-slider .toggle-icon {
+  transform: translateX(22px);
+  background: #3ba0e0;
+}
+</style>
+
+<script>
+(function() {
+  var sw = document.getElementById('theme-switch');
+  var icon = sw.parentElement.querySelector('.toggle-icon');
+  function updateIcon() {
+    var meta = document.querySelector('meta[name=color-scheme]');
+    var content = meta.getAttribute('content');
+    var isDark = content === 'dark' || (content === 'light dark' && matchMedia('(prefers-color-scheme: dark)').matches);
+    sw.checked = isDark;
+    icon.textContent = isDark ? '🌙' : '☀️';
+  }
+  updateIcon();
+  sw.addEventListener('change', function() { setTimeout(updateIcon, 50); });
+})();
+</script>
 
 {{ content }}
 
