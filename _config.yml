@@ -18,8 +18,11 @@ show_minimal: false             # remove all clutter
 # Menu                          # for available icons see https://fontawesome.com/v5/icons/
 
 navigation:                     # accepts {file, title, url, icon, sidebaricon}
-  - {file: "archive.html", sidebaricon: home}
-  - {file: "README.md", sidebaricon: address-card}
+  # - {file: "archive.html", sidebaricon: home}
+  - {file: "README.md", title: "About Me"}
+  - {file: "personalprojects.html", title: "Personal Projects"}
+  - {file: "README.md", title: "Blog", url: "https://www.signalsandstories.com/"}
+  - {file: "README.md", title: "Travel", url: "https://travel.com"}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: Mail, icon: envelope, url: "mailto:yash.mundada@gmail.com"}
