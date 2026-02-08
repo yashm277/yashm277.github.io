@@ -15,6 +15,14 @@
   .toggle-slider .toggle-icon { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; justify-content: center; font-size: 12px; transition: transform 0.3s, background 0.3s; line-height: 1; }
   .theme-toggle input:checked + .toggle-slider { background: rgba(30, 80, 120, 0.6); }
   .theme-toggle input:checked + .toggle-slider .toggle-icon { transform: translateX(22px); background: #3ba0e0; }
+  /* Custom cursor */
+  html.custom-cursor, html.custom-cursor * { cursor: none !important; }
+  .cursor-dot { position: fixed; top: -100px; left: -100px; width: 8px; height: 8px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, opacity 0.15s; }
+  .cursor-dot.hovering { width: 14px; height: 14px; }
+  .cursor-ring { position: fixed; top: -100px; left: -100px; width: 36px; height: 36px; border: 1.5px solid light-dark(rgba(0,0,0,0.12), rgba(255,255,255,0.12)); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.15s; }
+  .cursor-ring.hovering { width: 52px; height: 52px; border-color: light-dark(rgba(0,0,0,0.06), rgba(255,255,255,0.06)); }
+  .cursor-glow { position: fixed; top: -100px; left: -100px; width: 400px; height: 400px; border-radius: 50%; pointer-events: none; z-index: 9997; transform: translate(-50%, -50%); transition: opacity 0.15s; background: radial-gradient(circle, light-dark(rgba(100,80,200,0.18), rgba(80,140,240,0.1)) 0%, transparent 70%); }
+  footer nav a { transition: transform 0.25s ease; }
   </style>
   <label class="theme-toggle" for="theme-switch">
     <input type="checkbox" id="theme-switch" onclick="toggle()">
@@ -42,6 +50,48 @@
 {{ content }}
 
 <footer class="hover smooth">
+  <script>
+  (function() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+    document.documentElement.classList.add('custom-cursor');
+    var footer = document.querySelector('footer');
+    var dot = document.createElement('div');  dot.className = 'cursor-dot';
+    var ring = document.createElement('div'); ring.className = 'cursor-ring';
+    var glow = document.createElement('div'); glow.className = 'cursor-glow';
+    footer.appendChild(dot); footer.appendChild(ring); footer.appendChild(glow);
+    var mx = -100, my = -100, rx = -100, ry = -100, gx = -100, gy = -100;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function animate() {
+      rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      gx += (mx - gx) * 0.06; gy += (my - gy) * 0.06;
+      glow.style.left = gx + 'px'; glow.style.top = gy + 'px';
+      requestAnimationFrame(animate);
+    })();
+    document.querySelectorAll('a, button, label, input, select').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { dot.classList.add('hovering'); ring.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function() { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+    });
+    document.addEventListener('mouseleave', function() {
+      dot.style.opacity = '0'; ring.style.opacity = '0'; glow.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function() {
+      dot.style.opacity = '1'; ring.style.opacity = '1'; glow.style.opacity = '1';
+    });
+    document.querySelectorAll('footer nav a').forEach(function(link) {
+      link.addEventListener('mousemove', function(e) {
+        var r = link.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        link.style.transform = 'translate(' + (x * 0.35) + 'px,' + (y * 0.4) + 'px)';
+      });
+      link.addEventListener('mouseleave', function() { link.style.transform = ''; });
+    });
+  })();
+  </script>
   <div style="font-size:0.8em">Last updated {{ site.time | date: "%B %d, %Y %H:%M" }} UTC</div>
   <nav>
     <a href="mailto:yash.mundada@gmail.com" aria-label="Email">
