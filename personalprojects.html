@@ -4,72 +4,62 @@ title: "Personal Projects"
 ---
 
 <article>
-<style>
-.project-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2em;
-  margin-top: 1em;
-}
 
-.project-card {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 1.4em;
-  transition: background 0.25s, border-color 0.25s;
-}
-
-.project-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.project-card h3 {
-  margin: 0 0 0.5em;
-}
-
-.project-card p {
-  margin: 0;
-  opacity: 0.8;
-  text-align: left;
-}
-
-.project-card a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-</style>
-
-<div class="project-grid">
-
-  <div class="project-card">
-    <a href="#">
-      <h3>Travel logger</h3>
-      <p>Website to show the different places I've been overtime and syncs with gmaps</p>
-    </a>
-  </div>
-
-  <!-- <div class="project-card">
-    <a href="#">
-      <h3>Project Two</h3>
-      <p>A short description of what this project is about and what problem it solves.</p>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <a href="#">
-      <h3>Project Three</h3>
-      <p>A short description of what this project is about and what problem it solves.</p>
-    </a>
-  </div>
-
-  <div class="project-card">
-    <a href="#">
-      <h3>Project Four</h3>
-      <p>A short description of what this project is about and what problem it solves.</p>
-    </a>
-  </div> -->
-
+<div class="project-search-container">
+  <input type="text" id="project-search" class="project-search" placeholder="Search projects..." autocomplete="off">
 </div>
+
+<div class="project-controls">
+  <div class="project-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="in-progress">In Progress</button>
+    <button class="filter-btn" data-filter="completed">Completed</button>
+    <button class="filter-btn" data-filter="planned">Planned</button>
+  </div>
+  <div class="project-sort">
+    <label for="project-sort-select">Sort by:</label>
+    <select id="project-sort-select" class="project-sort-select">
+      <option value="ranking">Priority</option>
+      <option value="last-updated">Last Updated</option>
+      <option value="stars">Stars</option>
+      <option value="title">Title</option>
+    </select>
+  </div>
+</div>
+
+<div class="project-grid" id="project-grid">
+  {% assign sorted_projects = site.projects | sort: "ranking" %}
+  {% for project in sorted_projects %}
+  <a href="{{ project.url | relative_url }}" class="project-card"
+     data-title="{{ project.title | downcase }}"
+     data-description="{{ project.short_description | downcase }}"
+     data-tags="{{ project.tags | join: ',' | downcase }}"
+     data-status="{{ project.status | slugify }}"
+     data-ranking="{{ project.ranking | default: 999 }}"
+     data-last-updated="{{ project.last_updated | date: '%Y%m%d' }}"
+     data-stars="{{ project.stars | default: 0 }}"
+     data-github="{{ project.github_url }}">
+    <div class="project-card-content">
+      <div class="project-card-text">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.short_description }}</p>
+        <div class="project-card-meta">
+          <span class="project-status project-status--{{ project.status | slugify }}">{{ project.status }}</span>
+          {% for tag in project.tags %}
+          <span class="project-tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% if project.image and project.image != "" %}
+      <div class="project-card-image">
+        <img src="{{ '/assets/images/projects/' | append: project.image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+      </div>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<p id="no-results" class="no-results" style="display:none;">No projects match your search.</p>
+
 </article>

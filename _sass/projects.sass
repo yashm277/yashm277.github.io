@@ -1,0 +1,283 @@
+// Search bar
+.project-search-container
+  margin-bottom: 1em
+
+.project-search
+  width: 100%
+  padding: 0.6em 1em
+  font-family: $font-family
+  font-size: 0.95em
+  border: 1px solid gray(30)
+  border-radius: 6px
+  background: light(100, 20)
+  color: light(6, 100)
+  outline: none
+  transition: border-color 0.25s
+  box-sizing: border-box
+  &:focus
+    border-color: $link
+
+// Filter/sort controls
+.project-controls
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+  gap: 0.8em
+  margin-bottom: 1.2em
+
+.project-filters
+  display: flex
+  gap: 0.4em
+  flex-wrap: wrap
+
+.filter-btn
+  font-family: $font-family
+  font-size: 0.8em
+  padding: 0.3em 0.8em
+  border: 1px solid gray(30)
+  border-radius: 4px
+  background: transparent
+  color: light(6, 100)
+  cursor: pointer
+  transition: background 0.25s, border-color 0.25s
+  &:hover
+    border-color: $link
+  &.active
+    background: $link
+    color: #fff
+    border-color: $link
+
+.project-sort
+  display: flex
+  align-items: center
+  gap: 0.4em
+  font-size: 0.85em
+
+.project-sort-select
+  font-family: $font-family
+  font-size: 1em
+  padding: 0.3em 0.6em
+  border: 1px solid gray(30)
+  border-radius: 4px
+  background: light(100, 20)
+  color: light(6, 100)
+
+// Project grid
+.project-grid
+  display: flex
+  flex-direction: column
+  gap: 1em
+
+// Project card (listing page)
+a.project-card
+  display: block
+  border: 1px solid gray(20)
+  border-radius: 8px
+  padding: 1.2em
+  text-decoration: none
+  color: inherit
+  font-weight: normal
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s
+  &:hover
+    border-color: gray(40)
+    box-shadow: 0 2px 8px gray(10)
+    background: gray(6)
+
+.project-card-content
+  display: flex
+  gap: 1.2em
+  align-items: flex-start
+
+.project-card-text
+  flex: 1
+  min-width: 0
+  h3
+    margin: 0 0 0.4em
+    font-size: 1.1em
+  p
+    margin: 0 0 0.6em
+    opacity: 0.8
+    text-align: left
+    font-size: 0.9em
+
+.project-card-image
+  flex-shrink: 0
+  width: 100px
+  height: 75px
+  border-radius: 6px
+  overflow: hidden
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    margin: 0
+
+.project-card-meta
+  display: flex
+  gap: 0.4em
+  flex-wrap: wrap
+  align-items: center
+
+// Status badges
+.project-status
+  font-size: 0.75em
+  padding: 0.2em 0.6em
+  border-radius: 3px
+  font-weight: bold
+  text-transform: uppercase
+  letter-spacing: 0.03em
+
+.project-status--completed
+  background: light-dark(#d4edda, #1a3a2a)
+  color: light-dark(#155724, #7ddf96)
+
+.project-status--in-progress
+  background: light-dark(#fff3cd, #3a3520)
+  color: light-dark(#856404, #f0d060)
+
+.project-status--planned
+  background: light-dark(#d1ecf1, #1a2e36)
+  color: light-dark(#0c5460, #63c5da)
+
+// Tags
+.project-tag
+  font-size: 0.7em
+  padding: 0.15em 0.5em
+  border-radius: 3px
+  background: gray(12)
+  color: light(40, 80)
+
+.project-tags
+  display: flex
+  gap: 0.4em
+  flex-wrap: wrap
+  margin: 0.8em 0
+
+// No results
+.no-results
+  text-align: center
+  opacity: 0.6
+  margin-top: 2em
+
+// Detail page
+.project-detail-header
+  display: flex
+  align-items: center
+  gap: 0.8em
+  flex-wrap: wrap
+  margin-bottom: 0.5em
+  h1
+    margin: 0
+
+.progress-bar-container
+  position: relative
+  height: 8px
+  background: gray(16)
+  border-radius: 4px
+  margin: 1em 0
+  overflow: hidden
+
+.progress-bar
+  height: 100%
+  background: $link
+  border-radius: 4px
+  transition: width 0.5s ease
+
+.progress-label
+  position: absolute
+  right: 0
+  top: -1.4em
+  font-size: 0.75em
+  opacity: 0.7
+
+.project-hero-image
+  margin: 1.5em 0
+  border-radius: 8px
+  overflow: hidden
+  img
+    margin: 0
+
+.project-body
+  margin: 1.5em 0
+  h2
+    margin-top: 1.5em
+
+.project-links
+  display: flex
+  gap: 0.8em
+  flex-wrap: wrap
+  margin: 1.5em 0
+
+.project-link
+  display: inline-flex
+  align-items: center
+  gap: 0.4em
+  padding: 0.5em 1em
+  border-radius: 6px
+  font-weight: bold
+  text-decoration: none
+  font-size: 0.9em
+  transition: opacity 0.25s
+
+.project-link--live
+  background: $link
+  color: #fff
+  &:hover
+    opacity: 0.85
+    color: #fff
+
+.project-link--github
+  background: gray(16)
+  color: light(6, 100)
+  &:hover
+    opacity: 0.85
+
+.project-meta
+  font-size: 0.85em
+  opacity: 0.6
+  margin-top: 1em
+
+// GitHub repo card
+.github-repo-card
+  border: 1px solid gray(20)
+  border-radius: 8px
+  padding: 1.2em
+  margin: 1.5em 0
+  transition: border-color 0.25s
+
+.github-repo-card-header
+  display: flex
+  align-items: center
+  gap: 0.5em
+  margin-bottom: 0.5em
+
+.github-repo-name
+  font-weight: bold
+  font-size: 1em
+
+.github-repo-desc
+  font-size: 0.9em
+  opacity: 0.75
+  margin: 0.3em 0 0.8em
+  text-align: left
+
+.github-repo-stats
+  display: flex
+  gap: 1.2em
+  font-size: 0.8em
+  opacity: 0.7
+
+.github-repo-stat
+  display: inline-flex
+  align-items: center
+  gap: 0.3em
+
+// Responsive
+@media (max-width: 480px)
+  .project-card-image
+    width: 70px
+    height: 52px
+  .project-controls
+    flex-direction: column
+    align-items: flex-start

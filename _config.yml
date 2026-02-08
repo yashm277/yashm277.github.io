@@ -28,5 +28,17 @@ comments:
 #  disqus_shortname: ""         # see https://disqus.com
 #  isso_domain: ""              # see https://isso-comments.de
 
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: project
+
 plugins:
  - jekyll-feed
