@@ -1,0 +1,5 @@
+:HL["/tweets/_next/static/chunks/a354e140ab5c4887.css","style"]
+:HL["/tweets/_next/static/media/536b4d72a397ec90-s.p.a277c2de.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/tweets/_next/static/media/f05228a5f9ec0eae-s.p.b2529432.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/tweets/_next/static/chunks/305bd85e563922a0.css","style"]
+0:{"buildId":"xdFRT-LEOofK-OEB-5NBn","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
